@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aryan Bhardwaj - AI Engineer Portfolio</title>
+    <!-- Tailwind CSS (Deferred) -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+    
+    <!-- Devicon CDN for skill icons (Preloaded) -->
+    <link rel="preload" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css"></noscript>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Base styles from the reference site */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #0D0D0D; /* Very dark background */
+            color: #EAEAEA; /* Off-white text */
+            overflow-x: hidden; /* Prevent horizontal scroll from animations */
+        }
+
+        /* Re-creating the background blobs */
+        body::before {
+            content: '';
+            position: fixed;
+            top: -20vh;
+            left: -20vw;
+            width: 80vw;
+            height: 80vh;
+            background: radial-gradient(circle, rgba(128, 0, 128, 0.15) 0%, rgba(128, 0, 128, 0) 70%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(100px);
+            opacity: 0.7;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            bottom: -30vh;
+            right: -30vw;
+            width: 100vw;
+            height: 100vh;
+            background: radial-gradient(circle, rgba(63, 0, 128, 0.1) 0%, rgba(63, 0, 128, 0) 60%);
+            border-radius: 50%;
+            z-index: -1;
+            filter: blur(100px);
+            opacity: 0.7;
+        }
+
+        /* Glassmorphism Header */
+        header {
+            background: rgba(13, 13, 13, 0.7);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Styled Buttons */
+        .btn-primary {
+            @apply bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-semibold py-3 px-8 rounded-full shadow-lg transition-all duration-300 transform hover:scale-105 hover:shadow-purple-500/30;
+        }
+        .btn-outline {
+            @apply border-2 border-purple-500 text-white font-semibold py-3 px-8 rounded-full transition-all duration-300 hover:bg-purple-500 hover:text-white;
+        }
+
+        /* Hero Image blob style */
+        .hero-image-container {
+            background: linear-gradient(145deg, #5800FF, #A900FF);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            animation: blobAnimate 8s ease-in-out infinite alternate;
+        }
+
+        @keyframes blobAnimate {
+            0% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+            50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+            100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+        }
+
+        /* Section Cards (About, Experience, Skills, Projects, Contact) */
+        .section-card {
+            background: rgba(26, 26, 26, 0.8);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            @apply border border-gray-800 rounded-2xl shadow-xl;
+        }
+
+        /* New Skill Card Style (matching reference) */
+        .skill-card {
+            @apply bg-gray-900 border border-gray-700 p-4 rounded-lg flex flex-col justify-center items-center gap-2 transition-all duration-300 hover:border-purple-500 hover:bg-gray-800;
+            min-height: 100px;
+        }
+        .skill-card i {
+            @apply text-4xl;
+        }
+        .skill-card span {
+            @apply text-sm font-medium text-gray-300;
+        }
+
+        /* Project Card Style (matching reference) */
+        .project-card {
+            @apply bg-gray-900 border border-gray-700 rounded-lg shadow-lg overflow-hidden transition-all duration-300 hover:border-purple-500 hover:shadow-purple-500/10;
+        }
+
+        /* Form Input Style (matching reference) */
+        .form-input {
+            @apply w-full p-3 bg-gray-800 border border-gray-700 rounded-lg text-gray-200 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500;
+        }
+
+        /* Custom Scrollbar (optional but matches aesthetic) */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0D0D0D;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #8B5CF6; /* Purple */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #7C3AED; /* Darker Purple */
+        }
+        
+        /* Animation Styles */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+            transition-delay: 0.1s;
+        }
+        
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Staggered delay helper */
+        .delay-100 { transition-delay: 0.1s; }
+        .delay-200 { transition-delay: 0.2s; }
+        .delay-300 { transition-delay: 0.3s; }
+        .delay-400 { transition-delay: 0.4s; }
+
+    </style>
+</head>
+<body class="leading-relaxed">
+
+    <!-- HEADER & NAVIGATION -->
+    <header class="sticky top-0 z-50">
+        <nav class="container mx-auto px-6 py-5 flex justify-between items-center">
+            <a href="#" class="text-3xl font-bold text-white">
+                Aryan.
+            </a>
+            
+            <!-- Desktop Navigation -->
+            <div class="hidden md:flex space-x-8 items-center">
+                <a href="#home" class="hover:text-purple-400 transition-colors duration-300">Home</a>
+                <a href="#about" class="hover:text-purple-400 transition-colors duration-300">About</a>
+                <a href="#skills" class="hover:text-purple-400 transition-colors duration-300">Skills</a>
+                <a href="#projects" class="hover:text-purple-400 transition-colors duration-300">Projects</a>
+                <a href="#contact" class="hover:text-purple-400 transition-colors duration-300">Contact</a>
+            </div>
+            
+            <!-- Mobile Menu Button -->
+            <div class="md:hidden">
+                <button id="mobile-menu-btn" class="text-white focus:outline-none">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+        
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-black/80 backdrop-blur-lg px-6 pt-2 pb-4 space-y-3">
+            <a href="#home" class="block hover:text-purple-400 transition-colors duration-300 py-1">Home</a>
+            <a href="#about" class="block hover:text-purple-400 transition-colors duration-300 py-1">About</a>
+            <a href="#skills" class="block hover:text-purple-400 transition-colors duration-300 py-1">Skills</a>
+            <a href="#projects" class="block hover:text-purple-400 transition-colors duration-300 py-1">Projects</a>
+            <a href="#contact" class="block hover:text-purple-400 transition-colors duration-300 py-1">Contact</a>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <!-- HERO SECTION -->
+        <section id="home" class="min-h-screen flex items-center pt-24 pb-16">
+            <div class="container mx-auto px-6 grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                
+                <!-- Hero Text Content -->
+                <div class="text-center md:text-left animate-on-scroll">
+                    <span class="text-xl font-medium text-purple-400">Hi, I'm</span>
+                    <h1 class="text-5xl md:text-7xl font-extrabold text-white my-3">
+                        Aryan Bhardwaj
+                    </h1>
+                    <h2 class="text-2xl md:text-3xl font-semibold text-gray-300 mb-6">
+                        AI Engineer & Machine Learning Developer
+                    </h2>
+                    <p class="text-lg text-gray-400 max-w-lg mx-auto md:mx-0 mb-8">
+                        I build intelligent systems that solve real-world problems, from predictive health-tech to adaptive game AI.
+                    </p>
+                    
+                    <!-- Social Links -->
+                    <div class="flex justify-center md:justify-start space-x-6 mb-10">
+                        <a href="https://github.com/aryanbhardwaj-rgb" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors duration-300 transform hover:scale-110">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.09.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.577.688.48C19.135 20.165 22 16.418 22 12A10 10 0 0012 2z" clip-rule="evenodd" /></svg>
+                        </a>
+                        <a href="https://www.linkedin.com/in/aryan-bhardwaj-07/" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors duration-300 transform hover:scale-110">
+                            <svg class="w-8 h-8" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                        </a>
+                    </div>
+
+                    <!-- CV Button -->
+                    <a href="https://drive.google.com/file/d/1pyN17p4kL6wCKL1NmUdtcjxVJtBPFZuj/view?usp=share_link" target="_blank" class="btn-primary">
+                        Download Resume
+                    </a>
+                </div>
+
+                <!-- Hero Image -->
+                <div class="flex justify-center items-center animate-on-scroll delay-100">
+                    <div class="w-72 h-72 md:w-96 md:h-96 hero-image-container overflow-hidden p-2 shadow-2xl">
+                        <!-- Optimized Hero Image -->
+                        <img src="https://iili.io/KiqOMf2.jpg" alt="Aryan Bhardwaj" class="w-full h-full object-cover rounded-[inherit]" fetchpriority="high" decoding="async">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT ME & EXPERIENCE -->
+        <section id="about" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <h2 class="text-4xl font-bold text-white text-center mb-16 animate-on-scroll">About Me</h2>
+                
+                <div class="section-card p-8 md:p-12 animate-on-scroll">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 items-start">
+                        <!-- Optimized About Me Image -->
+                        <img src="https://iili.io/KiKK6Kv.jpg" alt="Aryan Bhardwaj" class="rounded-lg shadow-lg w-full h-auto object-cover md:col-span-1" loading="lazy" decoding="async">
+                        
+                        <div class="md:col-span-2">
+                            <p class="text-lg text-gray-300 mb-6">
+                                I am a passionate AI Engineer with a strong foundation in machine learning, deep learning, and computer vision. I have hands-on experience developing intelligent systems, from predictive healthcare models to adaptive game AI.
+                            </p>
+                            <p class="text-lg text-gray-300 mb-10">
+                                My experience includes certified internships with industry leaders like IBM and CodSoft, where I honed my skills in data analysis, model development, and AI ethics. I am driven by the challenge of solving complex problems and creating tangible, real-world impact with technology.
+                            </p>
+                            
+                            <!-- Experience Cards -->
+                            <div class="space-y-6">
+                                <div class="p-6 bg-gray-900 border border-gray-700 rounded-lg">
+                                    <h3 class="text-xl font-semibold text-purple-400 mb-1">IBM - Data Science Intern</h3>
+                                    <p class="text-gray-400 text-sm mb-2">Certified Internship</p>
+                                    <p class="text-gray-300">
+                                        Developed and evaluated predictive models using Python, Scikit-learn, and TensorFlow. Performed data analysis, visualization, and feature engineering on complex datasets.
+                                    </p>
+                                </div>
+                                <div class="p-6 bg-gray-900 border border-gray-700 rounded-lg">
+                                    <h3 class="text-xl font-semibold text-purple-400 mb-1">CodSoft - AI & ML Intern</h3>
+                                    <p class="text-gray-400 text-sm mb-2">Certified Internship</p>
+                                    <p class="text-gray-300">
+                                        Worked on computer vision tasks with OpenCV and NLP models. Gained practical experience in the full machine learning lifecycle, from data preprocessing to model deployment.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SKILLS -->
+        <section id="skills" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <h2 class="text-4xl font-bold text-white text-center mb-16 animate-on-scroll">My Skills</h2>
+                
+                <div class="section-card p-8 md:p-12 animate-on-scroll">
+                    <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-5">
+                        
+                        <!-- Skill: Python -->
+                        <div class="skill-card">
+                            <i class="devicon-python-plain colored"></i>
+                            <span>Python</span>
+                        </div>
+                        <!-- Skill: Java -->
+                        <div class="skill-card">
+                            <i class="devicon-java-plain colored"></i>
+                            <span>Java</span>
+                        </div>
+                        <!-- Skill: C++ -->
+                        <div class="skill-card">
+                            <i class="devicon-cplusplus-plain colored"></i>
+                            <span>C/C++</span>
+                        </div>
+                        <!-- Skill: JavaScript -->
+                        <div class="skill-card">
+                            <i class="devicon-javascript-plain colored"></i>
+                            <span>JavaScript</span>
+                        </div>
+                        <!-- Skill: HTML -->
+                        <div class="skill-card">
+                            <i class="devicon-html5-plain colored"></i>
+                            <span>HTML</span>
+                        </div>
+                        <!-- Skill: CSS -->
+                        <div class="skill-card">
+                            <i class="devicon-css3-plain colored"></i>
+                            <span>CSS</span>
+                        </div>
+                        <!-- Skill: R -->
+                        <div class="skill-card">
+                            <i class="devicon-r-plain colored"></i>
+                            <span>R</span>
+                        </div>
+                        <!-- Skill: AI/ML (Text) -->
+                        <div class="skill-card">
+                            <span class="text-purple-300 text-lg">AI</span>
+                            <span>AI / ML</span>
+                        </div>
+                        <!-- Skill: Scikit-learn -->
+                        <div class="skill-card">
+                            <i class="devicon-scikitlearn-plain colored"></i>
+                            <span>Scikit-learn</span>
+                        </div>
+                        <!-- Skill: OpenCV -->
+                        <div class="skill-card">
+                            <i class="devicon-opencv-plain colored"></i>
+                            <span>OpenCV</span>
+                        </div>
+                        <!-- Skill: TensorFlow -->
+                        <div class="skill-card">
+                            <i class="devicon-tensorflow-original colored"></i>
+                            <span>TensorFlow</span>
+                        </div>
+                        <!-- Skill: PyTorch -->
+                        <div class="skill-card">
+                            <i class="devicon-pytorch-plain colored"></i>
+                            <span>PyTorch</span>
+                        </div>
+                        <!-- Skill: Multimodal VQA (Text) -->
+                        <div class="skill-card">
+                            <span class="text-purple-300 text-lg">?</span>
+                            <span>Multimodal VQA</span>
+                        </div>
+                        <!-- Skill: Streamlit -->
+                        <div class="skill-card">
+                            <i class="devicon-streamlit-plain colored"></i>
+                            <span>Streamlit</span>
+                        </div>
+                        <!-- Skill: React -->
+                        <div class="skill-card">
+                            <i class="devicon-react-original colored"></i>
+                            <span>React</span>
+                        </div>
+                        <!-- Skill: Node.js -->
+                        <div class="skill-card">
+                            <i class="devicon-nodejs-plain colored"></i>
+                            <span>Node.js</span>
+                        </div>
+                        <!-- Skill: Flask -->
+                        <div class="skill-card">
+                            <i class="devicon-flask-original colored"></i>
+                            <span>Flask</span>
+                        </div>
+                        <!-- Skill: MySQL -->
+                        <div class="skill-card">
+                            <i class="devicon-mysql-plain colored"></i>
+                            <span>MySQL</span>
+                        </div>
+                        <!-- Skill: MongoDB -->
+                        <div class="skill-card">
+                            <i class="devicon-mongodb-plain colored"></i>
+                            <span>MongoDB</span>
+                        </div>
+                        <!-- Skill: Linux -->
+                        <div class="skill-card">
+                            <i class="devicon-linux-plain colored"></i>
+                            <span>Linux</span>
+                        </div>
+                        <!-- Skill: Git -->
+                        <div class="skill-card">
+                            <i class="devicon-git-plain colored"></i>
+                            <span>Git</span>
+                        </div>
+                        <!-- Skill: VS Code -->
+                        <div class="skill-card">
+                            <i class="devicon-visualstudio-plain colored"></i>
+                            <span>VS Code</span>
+                        </div>
+                        <!-- Skill: PyCharm -->
+                        <div class="skill-card">
+                            <i class="devicon-pycharm-plain colored"></i>
+                            <span>PyCharm</span>
+                        </div>
+                        <!-- Skill: Adobe -->
+                        <div class="skill-card">
+                            <i class="devicon-photoshop-plain colored"></i>
+                            <span>Adobe Suite</span>
+                        </div>
+                         <!-- Skill: Algorithms (Text) -->
+                        <div class="skill-card">
+                            <span class="text-purple-300 text-lg">{}</span>
+                            <span>Algorithms</span>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- PROJECTS -->
+        <section id="projects" class="py-20 md:py-32">
+            <div class="container mx-auto px-6">
+                <h2 class="text-4xl font-bold text-white text-center mb-16 animate-on-scroll">My Projects</h2>
+                
+                <!-- Projects Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <!-- PROJECT CARD 1 -->
+                    <div class="project-card animate-on-scroll delay-100">
+                        <!-- Optimized Project Image -->
+                        <img src="https://iili.io/KifgccQ.png" 
+                             alt="Screenshot of Doctor AI Project" 
+                             class="w-full h-56 object-cover" loading="lazy" decoding="async">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-3">Dr. AI – Intelligent Medical Diagnosis</h3>
+                            <p class="text-gray-400 mb-4 h-24">
+                                An AI-powered healthcare assistant that analyzes symptoms and provides possible disease predictions along with preventive suggestions.
+                            </p>
+                            <div class="flex justify-end space-x-4">
+                                <a href="https://github.com/aryanbhardwaj-rgb/Doctor-AI-1" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors" title="View GitHub Repo">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.09.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.577.688.48C19.135 20.165 22 16.418 22 12A10 10 0 0012 2z" clip-rule="evenodd" /></svg>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors" title="View Live Demo">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- PROJECT CARD 2 -->
+                    <div class="project-card animate-on-scroll delay-200">
+                        <!-- Optimized Project Image -->
+                        <img src="https://iili.io/KifLF5v.png" 
+                             alt="Screenshot of VQA Project" 
+                             class="w-full h-56 object-cover" loading="lazy" decoding="async">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-3">Explainable Multimodal VQA</h3>
+                            <p class="text-gray-400 mb-4 h-24">
+                                An XAI model that answers questions based on images and provides visual-textual reasoning for its predictions, making decision-making transparent.
+                            </p>
+                            <div class="flex justify-end space-x-4">
+                                <a href="https://github.com/aryanbhardwaj-rgb/Explainable-Multimodal-VQA-DEMO-/tree/main" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors" title="View GitHub Repo">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.09.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.577.688.48C19.135 20.165 22 16.418 22 12A10 10 0 0012 2z" clip-rule="evenodd" /></svg>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors" title="View Live Demo">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- PROJECT CARD 3 -->
+                    <div class="project-card animate-on-scroll delay-300">
+                        <!-- Optimized Project Image -->
+                        <img src="https://iili.io/KiqFUaR.png" 
+                             alt="Screenshot of AI GameBot Project" 
+                             class="w-full h-56 object-cover" loading="lazy" decoding="async">
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold text-white mb-3">AI GameBot – Adaptive Fighting Opponent</h3>
+                            <p class="text-gray-400 mb-4 h-24">
+                                A self-learning AI bot that observes player moves and adapts its strategy using reinforcement learning for dynamic, real-time gameplay.
+                            </p>
+                            <div class="flex justify-end space-x-4">
+                                <a href="https://github.com/aryanbhardwaj-rgb/FIGHTINTEL" target="_blank" class="text-gray-400 hover:text-purple-400 transition-colors" title="View GitHub Repo">
+                                    <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.165 6.839 9.489.5.09.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.155-1.11-1.463-1.11-1.463-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.951 0-1.093.39-1.988 1.03-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.026 2.747-1.026.546 1.379.202 2.398.1 2.65.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.942.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.577.688.48C19.135 20.165 22 16.418 22 12A10 10 0 0012 2z" clip-rule="evenodd" /></svg>
+                                </a>
+                                <a href="#" class="text-gray-400 hover:text-purple-400 transition-colors" title="View Live Demo">
+                                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT -->
+        <section id="contact" class="py-20 md:py-32">
+            <div class="container mx-auto px-6 max-w-6xl">
+                <h2 class="text-4xl font-bold text-white text-center mb-16 animate-on-scroll">Get In Touch</h2>
+                
+                <div class="section-card p-8 md:p-12 animate-on-scroll">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                        
+                        <!-- Contact Form -->
+                        <div>
+                            <h3 class="text-2xl font-semibold text-white mb-6">Send me a message</h3>
+                            
+                            <form id="contact-form" action="https://formspree.io/f/mblpkknp" method="POST" class="space-y-5">
+                                <div>
+                                    <label for="name" class="hidden">Name</label>
+                                    <input type="text" name="name" id="name" placeholder="Your Name" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="hidden">Email</label>
+                                    <input type="email" name="email" id="email" placeholder="Your Email" class="form-input" required>
+                                </div>
+                                <div>
+                                    <label for="message" class="hidden">Message</label>
+                                    <textarea name="message" id="message" rows="5" placeholder="Your Message" class="form-input" required></textarea>
+                                </div>
+                                <button type="submit" class="btn-primary w-full">
+                                    Send Message
+                                </button>
+                            </form>
+                            <p id="form-status" class="text-center mt-4 text-green-400"></p>
+                        </div>
+                        
+                        <!-- Contact Info -->
+                        <div class="space-y-6">
+                             <h3 class="text-2xl font-semibold text-white mb-6">Contact Information</h3>
+                             <p class="text-lg text-gray-300">
+                                I'm currently open to new opportunities. Whether you have a project in mind, a question, or just want to connect, feel free to reach out!
+                            </p>
+                            
+                            <div class="flex items-center gap-4">
+                                <!-- Email Icon -->
+                                <svg class="w-6 h-6 text-purple-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                                
+                                <a href="mailto:aryanbhardwaj044@gmail.com" class="text-gray-300 text-lg hover:text-purple-400">aryanbhardwaj044@gmail.com</a>
+                            </div>
+
+                            <div class="flex items-center gap-4">
+                                <!-- LinkedIn Icon -->
+                                <svg class="w-7 h-7 text-purple-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                                <a href="https://www.linkedin.com/in/aryan-bhardwaj-07/" target="_blank" class="text-gray-300 text-lg hover:text-purple-400">Aryan Bhardwaj</a>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="border-t border-gray-800 text-gray-500 py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p>&copy; 2025 Aryan Bhardwaj. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // --- Mobile Menu ---
+        document.getElementById('mobile-menu-btn').onclick = function() {
+            var menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        };
+
+        // Close mobile menu when a nav link is clicked
+        document.querySelectorAll('#mobile-menu a, header a').forEach(function(link) {
+            link.onclick = function(e) {
+                // Only process hash links
+                if (link.getAttribute('href').startsWith('#')) {
+                    // Close the mobile menu
+                    var menu = document.getElementById('mobile-menu');
+                    menu.classList.add('hidden');
+                    
+                    // Optional: Smooth scroll behavior for all browsers
+                    e.preventDefault();
+                    var targetId = this.getAttribute('href');
+                    var targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                }
+            };
+        });
+
+        // --- Scroll Animation ---
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Animate only once
+                    }
+                });
+            }, {
+                threshold: 0.1 // Trigger when 10% of the element is in view
+            });
+
+            elementsToAnimate.forEach(el => {
+                observer.observe(el);
+            });
+        });
+        
+        // --- Formspree Contact Form ---
+        var form = document.getElementById("contact-form");
+        var status = document.getElementById("form-status");
+
+        async function handleSubmit(event) {
+            event.preventDefault();
+            var data = new FormData(event.target);
+            fetch(event.target.action, {
+                method: form.method,
+                body: data,
+                headers: {
+                    'Accept': 'application/json'
+                }
+            }).then(response => {
+                if (response.ok) {
+                    status.innerHTML = "Thanks for your message!";
+                    form.reset();
+                } else {
+                    response.json().then(data => {
+                        if (Object.hasOwn(data, 'errors')) {
+                            status.innerHTML = data["errors"].map(error => error["message"]).join(", ");
+                        } else {
+                            status.innerHTML = "Oops! There was a problem submitting your form";
+                        }
+                    });
+                }
+            }).catch(error => {
+                status.innerHTML = "Oops! There was a problem submitting your form";
+            });
+        }
+        form.addEventListener("submit", handleSubmit);
+
+    </script>
+
+</body>
+</html>
+
